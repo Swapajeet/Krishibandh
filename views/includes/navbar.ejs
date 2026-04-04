@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="container-fluid">
+    <a class="navbar-brand logo" href="/">
+      <img src="/icons/krishi.png" alt="krishibandh" width="35" height="28">
+      <span class="brand-text">Krishibandh</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" href="/">Home</a>
+        <a class="nav-link" href="/about">About</a>
+        <a class="nav-link" href="/contact">Contact</a>
+      </div>
+       
+      <div class="navbar-nav ms-auto">
+        
+        <% if (!currUser) { %>
+          <a class="nav-link btn btn-outline-success btn-sm me-2" href="/signup">Signup</a>
+          <a class="nav-link btn btn-success btn-sm" href="/login">Login</a>
+        <% } else { %>
+          <span class="nav-link text-success">Hello, <%= currUser.username %></span>
+          
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+
+ 

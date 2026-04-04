@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial; padding: 30px; }
+    h2 { text-align: center; }
+    table { width: 100%; border-collapse: collapse; }
+    td, th { border: 1px solid #ccc; padding: 8px; }
+  </style>
+</head>
+<body>
+
+<h2>INVOICE</h2>
+
+<p><b>Company:</b> <%= company.username %></p>
+<p><b>Email:</b> <%= company.email %></p>
+<p><b>Address:</b> <%= order.address %></p>
+
+<hr>
+
+<p><b>Farmer:</b> <%= farmer.username %></p>
+
+<table>
+  <tr>
+    <th>Crop</th>
+    <th>Quantity</th>
+    <th>Price</th>
+  </tr>
+  <tr>
+    <td><%= order.cropName %></td>
+    <td><%= cotation.quantity %></td>
+    <td>₹ <%= cotation.price %></td>
+  </tr>
+</table>
+
+<h3>Total: ₹ <%= cotation.price * cotation.quantity %></h3>
+
+</body>
+</html>

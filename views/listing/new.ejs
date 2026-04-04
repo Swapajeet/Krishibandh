@@ -1,0 +1,97 @@
+<% layout("layout/boilerplate.ejs") %>
+
+<div class="container mt-5">
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <!-- CARD -->
+      <div class="card create-order-card p-4">
+
+        <h3 class="mb-3 text-success fw-bold text-center">
+          Create New Order
+        </h3>
+        <p class="text-muted text-center mb-4">
+          Fill the details to post a new crop requirement
+        </p>
+
+        <form method="post"
+              action="/orders"
+              class="needs-validation"
+              novalidate>
+
+          <!-- Company Name -->
+          <div class="mb-3">
+            <label for="companyName" class="form-label">Company Name</label>
+            <input type="text"
+                   name="order[companyName]"
+                   id="companyName"
+                   class="form-control"
+                   required>
+          </div>
+
+          <!-- Crop Name -->
+          <div class="mb-3">
+            <label for="cropName" class="form-label">Crop Name</label>
+            <input type="text"
+                   name="order[cropName]"
+                   id="cropName"
+                   class="form-control"
+                   required>
+          </div>
+
+          <!-- Quantity & Price -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="quantity" class="form-label">Quantity</label>
+              <input type="number"
+                     name="order[quantity]"
+                     id="quantity"
+                     class="form-control"
+                     required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input type="number"
+                     name="order[price]"
+                     id="price"
+                     class="form-control"
+                     required>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="order[description]"
+                      id="description"
+                      rows="3"
+                      class="form-control"
+                      required></textarea>
+          </div>
+
+          <!-- Address -->
+          <div class="mb-4">
+            <label for="address" class="form-label">Address</label>
+            <input type="text"
+                   name="order[address]"
+                   id="address"
+                   class="form-control"
+                   required>
+          </div>
+
+          <!-- Button -->
+          <div class="text-center">
+            <button class="btn btn-success px-5" type="submit">
+              Create Order
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>

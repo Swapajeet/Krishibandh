@@ -1,0 +1,75 @@
+<% layout("layout/boilerplate.ejs") %>
+
+<div class="dashboard">
+
+  <!-- SIDEBAR -->
+  <div class="card sidebar">
+    <h3 class="sidebar-title">My Account</h3>
+    <hr>
+
+    <a href="/" class="sidebar-link">
+      <i class="fa-solid fa-gauge"></i> Dashboard
+    </a>
+
+    <a href="/orders" class="sidebar-link">
+      <i class="fa-solid fa-list"></i> My Orders
+    </a>
+
+    <a href="/orders/new" class="sidebar-link">
+      <i class="fa-solid fa-plus"></i> Create Order
+    </a>
+
+    <a href="/mandi" class="sidebar-link">
+      <i class="fa-solid fa-chart-line"></i> Check Rate
+    </a>
+
+
+    <% if (currUser) { %>
+      <a href="/logout" class="logout-btn">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </a>
+    <% } %>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="card main-content">
+
+    <h2 class="username"><%= currUser.username %></h2>
+    <p class="welcome-text">
+      Welcome back! You can manage your orders and account here.
+    </p>
+
+    <a href="/orders" class="btn btn-success mb-3">See Orders</a>
+
+    <!-- STATS -->
+    <div class="stats">
+
+      <div class="stat-card">
+        <div>
+          <small>Total Orders</small>
+          <h2><%=totalOrders%></h2>
+        </div>
+        <i class="fa-solid fa-cube"></i>
+      </div>
+
+      <div class="stat-card">
+        <div>
+          <small>Completed Orders</small>
+          <h2><%=outOfStockCount%></h2>
+        </div>
+        <i class="fa-solid fa-clipboard-check"></i>
+      </div>
+      
+      <div class="stat-card">
+        <div>
+          <small>Income</small>
+          
+          <h2>₹ <%=totalIncome %></h2>
+         
+        </div>
+        <i class="fa-solid fa-indian-rupee-sign"></i>
+      </div>
+
+    </div>
+  </div>
+</div>

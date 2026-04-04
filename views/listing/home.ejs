@@ -1,0 +1,344 @@
+<%layout("layout/boilerplate.ejs")-%>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#f4f7f5;text-align:center;}
+
+/* HERO */
+.hero{
+  position:relative;
+  height:60vh;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+}
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity .8s ease-in-out;
+}
+.slide.active{opacity:1;}
+.overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.55);
+  z-index:1;
+}
+.hero-text{
+  position:relative;
+  z-index:2;
+  font-size:40px;
+  font-weight:700;
+}
+.subtitle{
+  padding:20px 20px 10px;
+  font-size:20px;
+  color:#f9fcfa;
+  font-weight:600;
+}
+.btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 30px;
+  background:#1b7f4c;
+  color:white;
+  text-decoration:none;
+  border-radius:30px;
+  font-weight:600;
+  transition:.3s;
+}
+.btn:hover{background:#145c36;transform:scale(1.05);}
+
+/* TRUST */
+.basic{display:flex;margin-top:20px;align-items:center;justify-content:center;}
+.info h2{color:#1b7f4c;}
+.trust-points{
+  max-width:600px;
+  margin:12px auto 0;
+  padding-left:22px;
+  text-align:left;
+}
+.trust-points li{color:#000;margin-bottom:12px;line-height:1.6;}
+
+/* KEY FEATURES */
+.points-section{padding:40px 20px;max-width:1200px;margin:auto;}
+.points-section h2{font-size:36px;color:#1b7f4c;margin-bottom:20px;}
+.points-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+.point{
+  background:white;
+  padding:15px;
+  border-radius:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  transition:.4s;
+}
+.point:hover{
+  transform:scale(1.05);
+  box-shadow:0 12px 30px rgba(27,127,76,.3);
+  background:linear-gradient(135deg,#e0f8ef,#d0f0e8);
+}
+.point h3{
+  color:#1b7f4c;
+  font-size:15px;
+  margin-bottom:6px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.point p{color:#555;font-size:13px;}
+
+/* COMPANY LOGO SLIDER */
+.company-slider-section{
+  padding:50px 20px;
+  background:#ffffff;
+}
+.company-slider-section h2{
+  color:#1b7f4c;
+  font-size:32px;
+  margin-bottom:25px;
+}
+.logo-slider{
+  overflow:hidden;
+  max-width:1100px;
+  margin:auto;
+  position:relative;
+}
+.logo-track{
+  display:flex;
+  gap:40px;
+  animation:logoMove 18s linear infinite;
+}
+.logo-card{
+  min-width:180px;
+  background:white;
+  padding:15px;
+  border-radius:15px;
+  box-shadow:0 6px 16px rgba(0,0,0,0.08);
+}
+.logo-card img{
+  width:100%;
+  height:80px;
+  object-fit:contain;
+  margin-bottom:8px;
+}
+.logo-card p{
+  font-size:13px;
+  color:#555;
+}
+@keyframes logoMove{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+
+/* GROWTH CHART */
+.chart-section{
+  padding:70px 20px;
+  background:#eaf5ef;
+}
+.chart-section h2{
+  color:#1b7f4c;
+  font-size:32px;
+  margin-bottom:25px;
+}
+.chart-box{
+  max-width:800px;
+  margin:auto;
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+/* HOW IT WORKS */
+.section{padding:80px 20px;background:#eaf5ef;}
+.section h2{font-size:32px;margin-bottom:40px;color:#1b7f4c;}
+.cards{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;}
+.card{
+  background:white;
+  width:280px;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  transition:.3s;
+}
+.card:hover{transform:translateY(-8px);}
+
+/* FEEDBACK */
+.feedback-section{padding:70px 20px;background:#ffffff;}
+.feedback-section h2{color:#1b7f4c;font-size:32px;margin-bottom:30px;}
+.feedback-form{
+  max-width:500px;
+  margin:auto;
+  background:#f4f7f5;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  text-align:left;
+}
+.feedback-form input,
+.feedback-form textarea{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  margin-bottom:18px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+.feedback-form button{
+  width:100%;
+  padding:12px;
+  background:#1b7f4c;
+  color:white;
+  border:none;
+  border-radius:25px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.footer{background:#111;color:white;padding:20px;margin-top:40px;}
+
+@media(max-width:992px){.points-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:576px){.points-grid{grid-template-columns:1fr;}}
+@media(max-width:768px){
+  .hero-text{font-size:28px;}
+  .subtitle{font-size:16px;}
+  .card{width:90%;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1600&auto=format&fit=crop');"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1610348725531-843dff563e2c?q=80&w=1600&auto=format&fit=crop');"></div>
+  <div class="overlay"></div>
+
+  <div class="hero-text">
+    Krishibandh
+    <div class="subtitle">Digital Bridge Between Farmers & Companies</div>
+    <a href="#" class="btn">Get Started</a>
+  </div>
+</div>
+
+<!-- TRUST -->
+<div class="basic">
+  <div class="info">
+    <h2>Building strong trust among every farmer</h2>
+    <ul class="trust-points">
+      <li>Our main aim is to increase the farmer’s economic and financial profit (income).</li>
+      <li>Suitable plan for farmers.</li>
+      <li>Company and farmer relationship</li>
+    </ul>
+  </div>
+</div>
+
+<!-- KEY FEATURES -->
+<div class="points-section">
+<h2>Key Features</h2>
+<div class="points-grid">
+<div class="point"><h3><i class="fa-solid fa-people-roof"></i> Direct Connection Between Farmers and Companies</h3><p>Farmers connect directly without middlemen.</p></div>
+<div class="point"><h3><i class="fa-solid fa-scale-balanced"></i> Fair and Transparent Pricing</h3><p>Clear and fair crop pricing.</p></div>
+<div class="point"><h3><i class="fa-solid fa-credit-card"></i> Safe and Quick Digital Payments</h3><p>Secure UPI & Net Banking.</p></div>
+<div class="point"><h3><i class="fa-solid fa-leaf"></i> Smart Crop Health Insights with AI</h3><p>AI disease detection.</p></div>
+<div class="point"><h3><i class="fa-solid fa-droplet"></i> Smart Irrigation with IoT</h3><p>Efficient water usage.</p></div>
+<div class="point"><h3><i class="fa-solid fa-cloud-sun-rain"></i> Real-Time Weather Updates</h3><p>Live weather alerts.</p></div>
+<div class="point"><h3><i class="fa-solid fa-location-dot"></i> Live GPS Tracking of Deliveries</h3><p>Track orders in real-time.</p></div>
+<div class="point"><h3><i class="fa-solid fa-bell"></i> Instant Order Notifications</h3><p>Quick updates on orders.</p></div>
+<div class="point"><h3><i class="fa-solid fa-hand-holding-dollar"></i> Cost Savings for Companies</h3><p>Lower operational costs.</p></div>
+<div class="point"><h3><i class="fa-solid fa-network-wired"></i> Strong and Transparent Supply Chain</h3><p>Better business trust.</p></div>
+<div class="point"><h3><i class="fa-solid fa-mobile-screen-button"></i> Easy-to-Use Farmer Friendly App</h3><p>Simple mobile interface.</p></div>
+<div class="point"><h3><i class="fa-solid fa-headset"></i> 24/7 Customer Support</h3><p>Support anytime.</p></div>
+</div>
+</div>
+
+<!-- COMPANY LOGOS -->
+<div class="company-slider-section">
+  <h2>Our Trusted Companies</h2>
+  <div class="logo-slider">
+    <div class="logo-track">
+      <div class="logo-card"><p>AgroStar</p></div>
+      <div class="logo-card"><p>ITC Foods</p></div>
+      <div class="logo-card"><p>PepsiCo India</p></div>
+      <div class="logo-card"><p>AgroStar</p></div>
+      <div class="logo-card"><p>ITC Foods</p></div>
+      <div class="logo-card"><p>PepsiCo India</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- GROWTH CHART -->
+<div class="chart-section">
+  <h2>📊 Farmer Growth Overview</h2>
+  <div class="chart-box">
+    <canvas id="growthChart" height="120"></canvas>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+<h2>How It Works</h2>
+<div class="cards">
+<div class="card"><h3>🌾 Upload Products</h3><p>Farmers upload crops & fruits.</p></div>
+<div class="card"><h3>💰 Get Best Price</h3><p>Companies offer fair pricing.</p></div>
+<div class="card"><h3>🚚 Direct Supply</h3><p>Safe and transparent delivery.</p></div>
+</div>
+</div>
+
+<!-- FEEDBACK -->
+<div class="feedback-section">
+<h2>Give Feedback</h2>
+<div class="feedback-form">
+<input type="text" placeholder="Farmer Name" required>
+<textarea rows="4" placeholder="Write your feedback..." required></textarea>
+<button type="submit">Submit Feedback</button>
+</div>
+</div>
+
+
+
+<script>
+// hero slider
+let slides=document.querySelectorAll(".slide");
+let index=0;
+setInterval(()=>{
+  slides[index].classList.remove("active");
+  index=(index+1)%slides.length;
+  slides[index].classList.add("active");
+},3000);
+
+// growth chart
+const gctx=document.getElementById('growthChart');
+new Chart(gctx,{
+  type:'line',
+  data:{
+    labels:['Jan','Feb','Mar','Apr','May','Jun'],
+    datasets:[{
+      label:'Farmer Income Growth (₹)',
+      data:[20000,25000,23000,28000,32000,37000],
+      tension:0.4,
+      fill:true
+    }]
+  },
+  options:{responsive:true}
+});
+</script>
+

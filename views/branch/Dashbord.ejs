@@ -1,0 +1,97 @@
+<%- layout("layout/boilerplate.ejs") %>
+
+<link rel="stylesheet" href="/css/dashboard.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<div class="container-fluid">
+  <div class="row">
+
+    <!-- SIDEBAR -->
+    <div class="col-md-3 col-lg-2 sidebar p-4">
+      <h4 class="text-success fw-bold mb-4">Krishibandh</h4>
+
+      <a href="/" class="sidebar-link">
+        <i class="fa-solid fa-house"></i> Dashboard
+      </a>
+
+      <a href="/branch/Dashbord/verifiction" class="sidebar-link">
+        <i class="fa-solid fa-box"></i> My Orders
+      </a>
+
+      <!-- <a href="/weather" class="sidebar-link">
+        <i class="fa-solid fa-cloud-sun"></i> Weather
+      </a> -->
+
+      <!-- <a href="#" class="sidebar-link">
+        <i class="fa-solid fa-chart-line"></i> Market Rate
+      </a> -->
+
+      <hr>
+
+      <% if (currUser) { %>
+        <a href="/logout" class="btn btn-outline-danger w-100 mt-3">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
+      <% } %>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="col-md-2 col-lg-9 p-4 main">
+
+      <!-- USER HEADER -->
+      <div class="card user-card mb-4">
+        <!-- <h2>Welcome, 👋</h2> -->
+        <p class="text-muted">
+          Manage your orders, income, and weather insights here.
+        </p>
+        <a href="/orders" class="btn btn-success btn-sm">
+          View Orders
+        </a>
+      </div>
+
+      <!-- STATS CARDS -->
+      <div class="row g-4">
+
+        <div class="col-md-4">
+          <div class="stat-card">
+            <div>
+              <small>Total Orders</small>
+              <h2>
+            <!--h2> -->
+            </div>
+            <i class="fa-solid fa-cube"></i>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="stat-card">
+            <div>
+              <small>Completed Orders</small>
+              <!-- <h2>h2> -->
+            </div>
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="stat-card">
+            <div>
+              <small>Total Income</small>
+              <!-- <h2>₹h2> -->
+            </div>
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CHART SECTION -->
+      
+        <canvas id="weatherChart"></canvas>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  

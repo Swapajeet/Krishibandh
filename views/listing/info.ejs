@@ -1,0 +1,49 @@
+<%- layout("layout/boilerplate.ejs") %>
+<div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+
+        <!-- Order Card -->
+        <div class="card shadow mb-4">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Order Details</h4>
+          </div>
+          <div class="card-body">
+            <p><strong>Order ID:</strong> <%= order._id %></p>
+            <p><strong>Product:</strong> <%= order.productName %></p>
+            <p><strong>Quantity:</strong> <%= order.quantity %></p>
+            <p><strong>Price:</strong> ₹ <%= order.price %></p>
+            <p><strong>Status:</strong> 
+              <span class="badge <%= 
+                order.status === 'visting' ? 'bg-warning' : 
+                order.status === 'Accepted' ? 'bg-success' : 
+                'bg-secondary' %>">
+                <%= order.status %>
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Farmer Card -->
+        <% if (order.auther) { %>
+        <div class="card shadow">
+          <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Farmer Details</h5>
+          </div>
+          <div class="card-body">
+            <p><strong>Name:</strong> <%= order.auther.username %></p>
+            <p><strong>Email:</strong> <%= order.auther.email %></p>
+            <p><strong>Role:</strong> <%= order.auther.role %></p>
+          </div>
+        </div>
+        <% } else { %>
+          <div class="alert alert-warning mt-3">Farmer information not available</div>
+        <% } %>
+         <div class="container text-center my-5">
+        <h3>Scan this QR to open order page</h3>
+        <img src="<%= qrImage %>" alt="QR Code" class="img-fluid my-3" style="max-width: 300px;">
+        <p>Or open directly: <a href="<%= scanUrl %>"><%= scanUrl %></a></p>
+       </div>
+      </div>
+    </div>
+  </div>

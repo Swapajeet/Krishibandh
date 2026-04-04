@@ -1,0 +1,57 @@
+<% layout("layout/boilerplate") %>
+<link rel="stylesheet" href="/css/wethe.css">
+
+<div class="container weather-page">
+
+  <!-- HEADER -->
+  <div class="weather-header text-center">
+    <h2>🌤️ 7-Day Weather Forecast</h2>
+    <p class="sub-text">Live weather updates based on your location</p>
+    <p id="status" class="status-text">Requesting your location…</p>
+    <div class="loader mx-auto" id="loader"></div>
+  </div>
+
+  <!-- TODAY WEATHER CARD -->
+  <div class="today-wrapper">
+    <div class="today-card" id="todayCard" style="display:none;">
+      <div class="today-left">
+        <h4>Today</h4>
+        <span id="todayDate"></span>
+      </div>
+
+      <div class="today-right">
+        <div>🌡️ <span id="todayTemp"></span> °C</div>
+        <div>🌬️ <span id="todayWind"></span> km/h</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAP + CHART GRID -->
+  <div class="weather-grid">
+
+    <!-- MAP -->
+    <div class="weather-box">
+      <h4>🛰️ Satellite View</h4>
+      <div id="map"></div>
+    </div>
+
+    <!-- CHART -->
+    <div class="weather-box">
+      <h4>📊 Temperature Trend</h4>
+      <canvas id="weatherChart"></canvas>
+    </div>
+
+  </div>
+
+  <!-- DAILY FORECAST -->
+  <h4 class="section-title">📅 Daily Forecast</h4>
+  <div class="cards" id="dailyCards"></div>
+
+  <p class="note text-center">
+    Weather data is fetched using your current location 🌍
+  </p>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

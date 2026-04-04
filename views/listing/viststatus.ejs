@@ -1,0 +1,24 @@
+<form
+  action="/branch/vrification/<%= order._id %>/update?_method=PUT"
+  method="POST"
+>
+
+  <div class="mb-3">
+    <label class="form-label fw-semibold">Update Status</label>
+
+    <select name="status" class="form-select" required>
+     
+        <% if (currUser && currUser.role === "branch") { %>
+       <option value="visting"
+        <%= cotation.status === "visting" ? "selected" : "" %>>
+        visting
+      </option>
+      <% } %>
+    </select>
+  </div>
+
+  <button class="btn btn-success btn-sm">
+    <i class="fa-solid fa-rotate"></i> Update Status
+  </button>
+
+</form>

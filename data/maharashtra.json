@@ -1,0 +1,7 @@
+[
+  { "commodity": "Wheat", "market": "Pune", "district": "Pune", "modal_price": 2100, "arrival_date": "2026-01-17", "state": "Maharashtra" },
+  { "commodity": "Grapes", "market": "Nashik", "district": "Nashik", "modal_price": 5000, "arrival_date": "2026-01-17", "state": "Maharashtra" },
+  { "commodity": "Mango", "market": "Ratnagiri", "district": "Ratnagiri", "modal_price": 7000, "arrival_date": "2026-01-17", "state": "Maharashtra" },
+  { "commodity": "Onion", "market": "Lasalgaon", "district": "Nashik", "modal_price": 2100, "arrival_date": "2026-01-17", "state": "Maharashtra" },
+  { "commodity": "Potato", "market": "Pune", "district": "Pune", "modal_price": 1800, "arrival_date": "2026-01-17", "state": "Maharashtra" }
+]

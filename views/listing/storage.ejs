@@ -1,0 +1,64 @@
+<% layout("layout/boilerplate.ejs") -%>
+
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-4">
+
+          <h2 class="text-center mb-4 fw-bold">Add Crop Data</h2>
+
+          <form method="post" action="/storage">
+
+            <div class="mb-3">
+              <label class="form-label">Crop Name</label>
+              <input type="text" class="form-control" name="storage[cropName]" required>
+            </div>
+             <div class="mb-3">
+              <label class="form-label">Storage Name</label>
+              <input type="text" class="form-control" name="storage[StorageName]" required>
+            </div>
+             <div class="mb-3">
+              <label class="form-label">Adress</label>
+              <input type="text" class="form-control" name="storage[Adress]" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Crop Category</label>
+              <input type="text" class="form-control" name="storage[category]" placeholder="Vegetable / Fruit / Grain / Pulse" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Number of Times Quality Preserved</label>
+              <input type="number" class="form-control" name="storage[preserveCount]" min="0" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Description</label>
+              <textarea class="form-control" name="storage[description]" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Farmer Instructions</label>
+              <textarea class="form-control" name="storage[instructions]" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label">Best Storage Temperature (°C)</label>
+              <input type="number" class="form-control" name="storage[temperature]">
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-success btn-lg rounded-3">
+                Save Crop Data
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

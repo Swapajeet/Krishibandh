@@ -1,0 +1,114 @@
+/* ===== BODY & CONTAINER ===== */
+body {
+  font-family: Arial, sans-serif;
+  /* background: #f4f6f8; */
+  padding: 30px 20px 120px 20px; /* bottom padding for footer space */
+  margin: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  /* background: #fff; */
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  margin-bottom: 20px; /* extra bottom spacing */
+}
+
+/* ===== HEADER & STATUS ===== */
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#status {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 15px;
+  color: #555;
+}
+
+/* ===== LOADER ===== */
+.loader {
+  display: none;
+  margin: 20px auto;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ddd;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== TODAY CARD ===== */
+.today-card {
+  display: flex;
+  justify-content: space-around;
+  background: #3498db;
+  /* color: #fff; */
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+.today-card div {
+  text-align: center;
+}
+
+/* ===== MAP ===== */
+#map {
+  height: 350px;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/* ===== CHART ===== */
+canvas {
+  margin-top: 30px;
+  border-radius: 10px;
+  max-width: 100%;
+}
+
+/* ===== DAILY CARDS ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.card {
+  /* background: #f9f9f9; */
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.card h4 {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* ===== FOOTER SPACE ===== */
+.note {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #777;
+  text-align: center;
+}
+
+/* ===== RESPONSIVE ===== */
+@media screen and (max-width: 600px) {
+  .today-card {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+

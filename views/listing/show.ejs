@@ -1,0 +1,180 @@
+<% layout("layout/boilerplate.ejs") %>
+
+<!-- ORDER DETAILS -->
+ <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<div class="col-8 offset-2 order-show-container">
+
+  <h1 class="mb-2"><%= Order.companyName %></h1>
+  <p class="fw-bold text-success"><%= Order.cropName %></p>
+
+  <p>
+    <b>Requirement:</b>
+    <%= remainingQuantity %> / ₹<%= Order.price %>
+  </p>
+
+  <p class="text-muted"><%= Order.description %></p>
+
+  <% if (currUser && Order.owner && currUser._id.equals(Order.owner._id)) { %>
+    <form method="post" action="/orders/<%= Order._id %>?_method=DELETE" class="mt-3">
+      <button class="btn btn-outline-danger">Delete</button>
+      <a href="/orders/<%= Order._id %>/edit" class="btn btn-outline-secondary ms-2">
+        Edit
+      </a>
+    </form>
+  <% } %>
+
+</div>
+
+<!-- FARMER COTATION FORM -->
+<% if (currUser && currUser.role === "farmer") { %>
+<hr class="col-8 offset-2">
+
+<div class="col-8 offset-2 cotation-form">
+
+  <h4 class="mb-3">Send Cotation</h4>
+
+  <form action="/orders/<%= Order._id %>/cotation" method="post" enctype="multipart/form-data">
+
+    <div class="mb-3">
+      <label class="form-label">Product Name</label>
+      <input type="text" name="cotation[productName]" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Product Image</label>
+      <input type="file" name="cotation[image]" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Quantity</label>
+      <input type="text" name="cotation[quantity]" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Price</label>
+      <input type="text" name="cotation[price]" class="form-control" required>
+    </div>
+
+    <button class="btn btn-success">Send Cotation</button>
+
+  </form>
+</div>
+<% } %>
+
+<!-- COTATION LIST -->
+<hr class="col-8 offset-2">
+
+<div class="col-8 offset-2 cotation-section">
+
+  <h4 class="mb-3">All Cotations</h4>
+
+  <div class="row">
+
+    <% for (let cotation of Order.cotation) { %>
+
+      <div class="card col-md-5 m-3 cotation-card">
+
+        <img
+          src="<%= cotation.image.url %>"
+          class="card-img-top"
+          alt="product image"
+          style="height: 160px; object-fit: cover;"
+        >
+
+        <div class="card-body">
+
+          <h5 class="fw-bold"><%= cotation.productName %></h5>
+
+          <p>Quantity: <%= cotation.quantity %></p>
+          <p>Price: ₹<%= cotation.price %></p>
+
+          <p class="text-muted">
+            By: <%= cotation.auther?.username || "Unknown user" %>
+          </p>
+
+          <span class="cotation-status">
+            <%= cotation.status %>
+          </span>
+
+          <% if (currUser && currUser.role === "company") { %>
+            <a
+              href="/orders/<%= Order._id %>/cotation/<%= cotation._id %>/update"
+              class="btn btn-outline-secondary btn-sm mt-2"
+            >
+              Update Status
+               
+            </a>
+            <button class="pay-btn green-btn" data-amount="<%= cotation.price %>">
+      Pay
+    </button>
+          <% } %>
+
+          <% if (currUser && currUser.role === "farmer") { %>
+            <form
+              method="post"
+              action="/orders/<%= Order._id %>/cotation/<%= cotation._id %>?_method=DELETE"
+              class="mt-2"
+            >
+              <button class="btn btn-sm btn-dark">Delete</button>
+            </form>
+          <% } %>
+           <% if (currUser && currUser.role === "farmer"&& cotation.status ==="visting") { %>
+            <a
+              href="/farmer/dashbord/cotation/<%= cotation._id %>"
+              class="btn btn-outline-secondary btn-sm mt-2"
+            >
+              get Scnner
+            </a>
+          <% } %>
+
+        </div>
+      </div>
+
+    <% } %>
+
+  </div>
+  <div class="">
+            <h3>where you will be</h3>
+            <div id="map"></div>
+           </div>
+</div>
+
+  <script>
+  document.querySelectorAll(".pay-btn").forEach(button => {
+
+  button.onclick = async function () {
+
+    const amount = this.getAttribute("data-amount"); // card chi amount ghe
+
+    const response = await fetch("/create-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount: amount })
+    });
+
+    const order = await response.json();
+
+    const options = {
+      key: "<%= process.env.RAZORPAY_KEY_ID %>",
+      amount: order.amount,
+      currency: order.currency,
+      order_id: order.id,
+
+      handler: async function (response) {
+
+        await fetch("/verify-payment", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(response)
+        });
+
+        alert("Payment Successful ₹" + order.amount / 100);
+      }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.open();
+  };
+
+}); 
+  </script>
