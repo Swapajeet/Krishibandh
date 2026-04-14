@@ -7,7 +7,16 @@
   <div class="row">
 
     <!-- SIDEBAR -->
-    <div class="col-md-3 col-lg-2 sidebar p-4">
+     <button class="btn brger" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-solid fa-bars sidebar-toggle"></i>
+
+<div  id="sidebar"></button>
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
       <h4 class="text-success fw-bold mb-4">Krishibandh</h4>
 
       <a href="/" class="sidebar-link">
@@ -38,7 +47,8 @@
         </a>
       <% } %>
     </div>
-
+</div>
+</div>
     <!-- MAIN CONTENT -->
     <div class="col-md-2 col-lg-9 p-4 main">
 

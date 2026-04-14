@@ -3,7 +3,16 @@
 <div class="dashboard">
 
   <!-- SIDEBAR -->
-  <div class="card sidebar">
+  <button class="btn brger" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="fa-solid fa-bars sidebar-toggle"></i>
+
+<div  id="sidebar"></button>
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
     <h3 class="sidebar-title">My Account</h3>
     <hr>
 
@@ -30,46 +39,55 @@
       </a>
     <% } %>
   </div>
+</div>
+</div>
 
-  <!-- MAIN CONTENT -->
-  <div class="card main-content">
+<!-- MAIN CONTENT -->
+    <div class="col-md-2 col-lg-9 p-4 main">
 
-    <h2 class="username"><%= currUser.username %></h2>
+      <!-- USER HEADER -->
+      <div class="card user-card mb-4">
+       <h2 class="username"><%= currUser.username %></h2>
     <p class="welcome-text">
       Welcome back! You can manage your orders and account here.
     </p>
 
     <a href="/orders" class="btn btn-success mb-3">See Orders</a>
+       
+      </div>
 
-    <!-- STATS -->
-    <div class="stats">
+      <!-- STATS CARDS -->
+      <div class="row g-4">
 
-      <div class="stat-card">
-        <div>
-          <small>Total Orders</small>
+        <div class="col-md-4">
+          <div class="stat-card">
+            <div>
+              <small>Total Orders</small>
           <h2><%=totalOrders%></h2>
+            </div>
+            <i class="fa-solid fa-cube"></i>
+          </div>
         </div>
-        <i class="fa-solid fa-cube"></i>
-      </div>
 
-      <div class="stat-card">
-        <div>
-          <small>Completed Orders</small>
+        <div class="col-md-4">
+          <div class="stat-card">
+            <div>
+             <small>Completed Orders</small>
           <h2><%=outOfStockCount%></h2>
+            </div>
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
         </div>
-        <i class="fa-solid fa-clipboard-check"></i>
-      </div>
-      
-      <div class="stat-card">
-        <div>
-          <small>Income</small>
+
+        <div class="col-md-4">
+          <div class="stat-card">
+            <div>
+              <small>Income</small>
           
           <h2>₹ <%=totalIncome %></h2>
-         
+            </div>
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+          </div>
         </div>
-        <i class="fa-solid fa-indian-rupee-sign"></i>
-      </div>
 
-    </div>
-  </div>
-</div>
+      </div>

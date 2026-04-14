@@ -370,7 +370,7 @@ hr {
    RESPONSIVE
 ========================= */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .order-show-container,
   .cotation-form {
     padding: 20px;
@@ -380,7 +380,7 @@ hr {
   .cotation-card {
     margin: 10px auto;
   }
-}
+} */
 
 /* =========================
   /* =========================
@@ -694,21 +694,19 @@ hr {
      border-radius: 5rem;
      }
 
-@media (max-width<600px) {
-   
-}
 
-@media (30px <= width <= 600px) {
+
+/* @media (30px <= width <= 600px) {
   /* … */
-   .sidebar{
-        opacity: 0;
-    }
-    .main{
-        margin-top: 0 !important;
-        z-index: 1!important;
-        position: absolute !important;
-    }
-}
+   /* .sidebar{ */
+        /* opacity: 0; */
+    /* } */
+    /* .main{ */
+        /* margin-top: 0 !important; */
+        /* z-index: 1!important; */
+        /* position: absolute !important; */
+    /* } */
+ */
 /* 
 home page
  */
@@ -727,4 +725,24 @@ home page
 .green-btn:hover {
   background-color: #28a745;
   color: white;
+}
+
+/* storage page */
+
+@media (max-width<600px) {
+     .berger{
+        position: absolute;
+        margin-left: 12px;
+     }
+     .stats{
+        width : 100% !important;
+     }
+     .stat-card{
+        width:2px !important;
+     }
+}
+
+.brger{
+   height:5px;
+   width: 10px;
 }
